@@ -55,6 +55,35 @@
         #main-header.scrolled .fa-facebook { color: #1877F2; } /* Azul Facebook */
         #main-header.scrolled .fa-instagram { color: #E4405F; } /* Rosa Instagram */
         #main-header.scrolled .fa-whatsapp { color: #25D366; }  /* Verde WhatsApp */
+
+        <style>
+    /* ... (tus estilos anteriores) ... */
+
+    /* 🔄 CSS PARA EL EFECTO FLIP DE TARJETAS */
+    .flip-card {
+        perspective: 1000px; /* Define la perspectiva 3D */
+    }
+
+    .flip-card-inner {
+        transform-style: preserve-3d; /* Mantiene el contexto 3D para los hijos */
+    }
+
+    /* Al pasar el mouse (hover), giramos el contenedor interno */
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+
+    /* Ambas caras ocupan el mismo espacio */
+    .flip-card-front, .flip-card-back {
+        backface-visibility: hidden; /* Oculta la cara trasera cuando no se ve */
+        -webkit-backface-visibility: hidden; /* Soporte para Safari */
+    }
+
+    /* El lado de atrás empieza girado 180 grados */
+    .flip-card-back {
+        transform: rotateY(180deg);
+    }
+</style>
     </style>
 </head>
 
@@ -135,6 +164,139 @@
                 </p>
                 <div class="border-l-8 border-blue-600 pl-8 py-4">
                     <p class="text-2xl font-bold text-blue-900 italic">"Garantizamos el funcionamiento seguro de tu hogar."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="faq" class="py-24 px-4 bg-slate-50">
+        <div class="container mx-auto max-w-4xl">
+            <h3 class="text-4xl md:text-5xl font-black text-blue-950 mb-12 uppercase italic text-center tracking-tighter">Preguntas Frecuentes</h3>
+            
+            <div class="space-y-6">
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                    <h4 class="text-xl font-black text-blue-900 mb-3 uppercase italic">¿Cuánto tiempo demora un trabajo de gas?</h4>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        Depende de la magnitud: una reparación menor puede estar lista en un par de horas, mientras que una instalación completa bajo normas de Litoral Gas lleva una planificación detallada. 
+                    </p>
+                    <a href="https://wa.me/54934257291109" class="text-blue-600 font-bold hover:underline">Consultar tiempo estimado por WhatsApp →</a>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                    <h4 class="text-xl font-black text-blue-900 mb-3 uppercase italic">¿Atienden urgencias los fines de semana?</h4>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        Sabemos que los problemas de gas no avisan. Contamos con un equipo de guardia técnica para resolver filtraciones o cortes preventivos de seguridad en <strong>Santo Tomé</strong> y zona.
+                    </p>
+                    <a href="https://wa.me/54934257291109" class="text-blue-600 font-bold hover:underline">Solicitar guardia técnica inmediata →</a>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                    <h4 class="text-xl font-black text-blue-900 mb-3 uppercase italic">¿Por qué es vital contratar un gasista matriculado?</h4>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        La seguridad es lo primero. Un matriculado garantiza que el trabajo cumple con las normativas vigentes, evitando multas, cortes de suministro y, sobre todo, riesgos de accidentes en el hogar.
+                    </p>
+                    <a href="https://wa.me/54934257291109" class="text-blue-600 font-bold hover:underline">Ver mis credenciales de matrícula →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+<section id="porque-elegirnos" class="py-24 px-4 bg-slate-50">
+        <div class="container mx-auto">
+            <h3 class="text-4xl md:text-5xl font-black text-blue-950 mb-16 uppercase italic text-center tracking-tighter">Por Qué Elegirnos</h3>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="flip-card aspect-square cursor-pointer group">
+                    <div class="flip-card-inner relative w-full h-full transition-transform duration-700">
+                        
+                        <div class="flip-card-front absolute inset-0 bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center justify-center text-center">
+                            <i class="fas fa-file-contract text-blue-600 text-6xl mb-6"></i>
+                            <h4 class="text-xl font-black text-blue-900 uppercase italic">Presupuesto sin Cargo</h4>
+                        </div>
+                        
+                        <div class="flip-card-back absolute inset-0 bg-blue-900 text-white p-8 rounded-3xl flex items-center justify-center text-center">
+                            <p class="text-lg leading-relaxed">Visitamos tu domicilio y te brindamos una cotización detallada sin compromiso alguno. ¡Consultá!</p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="flip-card aspect-square cursor-pointer group">
+                    <div class="flip-card-inner relative w-full h-full transition-transform duration-700">
+                        
+                        <div class="flip-card-front absolute inset-0 bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center justify-center text-center">
+                            <i class="fas fa-history text-blue-600 text-6xl mb-6"></i>
+                            <h4 class="text-xl font-black text-blue-900 uppercase italic">Atención Rápida</h4>
+                        </div>
+                        
+                        <div class="flip-card-back absolute inset-0 bg-blue-900 text-white p-8 rounded-3xl flex items-center justify-center text-center">
+                            <p class="text-lg leading-relaxed">Priorizamos tus necesidades. Respuestas inmediatas y coordinación eficiente de turnos en Santo Tomé y zona.</p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="flip-card aspect-square cursor-pointer group">
+                    <div class="flip-card-inner relative w-full h-full transition-transform duration-700">
+                        
+                        <div class="flip-card-front absolute inset-0 bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center justify-center text-center">
+                            <i class="fas fa-tools text-blue-600 text-6xl mb-6"></i>
+                            <h4 class="text-xl font-black text-blue-900 uppercase italic">Mantenimiento Preventivo</h4>
+                        </div>
+                        
+                        <div class="flip-card-back absolute inset-0 bg-blue-900 text-white p-8 rounded-3xl flex items-center justify-center text-center">
+                            <p class="text-lg leading-relaxed italic font-medium">
+                                Evitá cortes inesperados y fallas costosas. Programamos revisiones periódicas de tus artefactos para garantizar seguridad y eficiencia energética.
+                            </p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="flip-card aspect-square cursor-pointer group">
+                    <div class="flip-card-inner relative w-full h-full transition-transform duration-700">
+                        
+                        <div class="flip-card-front absolute inset-0 bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center justify-center text-center">
+                            <i class="fas fa-handshake text-blue-600 text-6xl mb-6"></i>
+                            <h4 class="text-xl font-black text-blue-900 uppercase italic">Trato Personalizado</h4>
+                        </div>
+                        
+                        <div class="flip-card-back absolute inset-0 bg-blue-900 text-white p-8 rounded-3xl flex items-center justify-center text-center">
+                            <p class="text-lg leading-relaxed">Escuchamos tus necesidades y te asesoramos para encontrar la solución más eficiente y segura para tu hogar.</p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section id="trabajos" class="py-24 px-4 bg-white">
+        <div class="container mx-auto">
+            <h3 class="text-4xl md:text-5xl font-black text-blue-950 mb-16 uppercase italic text-center tracking-tighter">Nuestros Trabajos</h3>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="group relative overflow-hidden rounded-[40px] shadow-lg aspect-square">
+                    <img src="trabajo1.jpg" alt="Instalación de caldera en Santo Tomé" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-blue-900/80 opacity-0 group-hover:opacity-100 transition flex flex-col justify-center items-center text-white p-6">
+                        <p class="font-black uppercase italic text-xl">Instalación Central</p>
+                        <p class="text-sm opacity-80 mt-2">Habilitación de caldera y radiadores.</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-[40px] shadow-lg aspect-square">
+                    <img src="trabajo2.jpg" alt="Detección de fuga de gas" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-blue-900/80 opacity-0 group-hover:opacity-100 transition flex flex-col justify-center items-center text-white p-6">
+                        <p class="font-black uppercase italic text-xl">Detección Técnica</p>
+                        <p class="text-sm opacity-80 mt-2">Localización y sellado de fuga en red primaria.</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-[40px] shadow-lg aspect-square">
+                    <img src="trabajo3.jpg" alt="Habilitación Litoral Gas" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-blue-900/80 opacity-0 group-hover:opacity-100 transition flex flex-col justify-center items-center text-white p-6">
+                        <p class="font-black uppercase italic text-xl">Planos y Trámites</p>
+                        <p class="text-sm opacity-80 mt-2">Gestión completa ante Litoral Gas.</p>
+                    </div>
                 </div>
             </div>
         </div>
