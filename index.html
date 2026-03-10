@@ -7,91 +7,46 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script> 
 
-    <script type="application/ld+json"> /* Datos para IAs */
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Ejemplo Gasista SRL",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Avenida Siempre Viva 1111",
-        "addressLocality": "Santo Tomé",
-        "addressRegion": "Santa Fe",
-        "addressCountry": "AR"
-      },
-      "telephone": "11111111111",
-      "areaServed": "Santo Tomé, Santa Fe"
-    }
-    </script>
-
     <style> 
-        /* Comportamiento del Video */
+        /* --- VIDEO HERO --- */
         .video-container video { object-fit: cover; } 
-        /* Lógica de Slider */
         .slide { display: none; } 
         .active-slide { display: block; animation: fadeIn 1s; } 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* Estado inicial del Header (Transparente) */
-        #main-header {
-            transition: all 0.4s ease-in-out;
-            background-color: transparent;
-            border-bottom-color: transparent;
+        /* 🛸 ANIMACIÓN FLOTANTE */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
-        /* Estado al scrollear (Sólido) */
-        #main-header.scrolled {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            border-bottom-color: #f1f5f9;
-        }
-
-        /* Cambio de color de texto del menú */
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        
+        /* --- HEADER ADAPTATIVO --- */
+        #main-header { transition: all 0.4s ease-in-out; background-color: transparent; border-bottom-color: transparent; }
+        #main-header.scrolled { background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); border-bottom-color: #f1f5f9; }
         #main-header.scrolled .nav-link { color: #475569; }
         #main-header.scrolled .brand-name { color: #1e3a8a; }
 
-        /* LÓGICA DE ICONOS: Colores de Marca al hacer Scroll */
+        /* --- ICONOS SOCIALES --- */
         .social-icon { color: white; transition: color 0.4s ease; }
-        
-        #main-header.scrolled .fa-facebook { color: #1877F2; } /* Azul Facebook */
-        #main-header.scrolled .fa-instagram { color: #E4405F; } /* Rosa Instagram */
-        #main-header.scrolled .fa-whatsapp { color: #25D366; }  /* Verde WhatsApp */
+        #main-header.scrolled .fa-facebook { color: #1877F2; }
+        #main-header.scrolled .fa-instagram { color: #E4405F; }
+        #main-header.scrolled .fa-whatsapp { color: #25D366; }
 
-
-    /* 🔄 CSS PARA EL EFECTO FLIP DE TARJETAS */
-    .flip-card {
-        perspective: 1000px; /* Define la perspectiva 3D */
-    }
-
-    .flip-card-inner {
-        transform-style: preserve-3d; /* Mantiene el contexto 3D para los hijos */
-    }
-
-    /* Al pasar el mouse (hover), giramos el contenedor interno */
-    .flip-card:hover .flip-card-inner {
-        transform: rotateY(180deg);
-    }
-
-    /* Ambas caras ocupan el mismo espacio */
-    .flip-card-front, .flip-card-back {
-        backface-visibility: hidden; /* Oculta la cara trasera cuando no se ve */
-        -webkit-backface-visibility: hidden; /* Soporte para Safari */
-    }
-
-    /* El lado de atrás empieza girado 180 grados */
-    .flip-card-back {
-        transform: rotateY(180deg);
-    }
-</style>
+        /* --- TARJETAS FLIP 3D --- */
+        .flip-card { perspective: 1000px; height: 300px; }
+        .flip-card-inner { transform-style: preserve-3d; transition: transform 0.7s; position: relative; width: 100%; height: 100%; }
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; position: absolute; inset: 0; border-radius: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
+        .flip-card-back { transform: rotateY(180deg); }
     </style>
 </head>
 
 <body class="bg-white text-slate-800 font-sans selection:bg-blue-100 selection:text-blue-900">
 
     <div class="fixed bottom-6 right-6 z-[100] flex items-center gap-3">
-        <div class="bg-white px-4 py-2 rounded-lg shadow-lg border border-slate-100 hidden md:block animate-bounce">
-            <p class="text-xs font-bold text-slate-400">¿Necesitás ayuda?</p>
-            <p class="text-sm font-semibold text-slate-800">Chateá con nosotros</p>
-        </div>
+        <div class="bg-white px-4 py-2 rounded-lg shadow-lg border border-slate-100 hidden md:block animate-bounce text-sm font-bold italic">¿Emergencia de Gas? Chateá acá</div>
         <a href="https://wa.me/54934257291109" target="_blank" class="bg-[#25D366] w-16 h-16 flex items-center justify-center rounded-full shadow-2xl hover:scale-110 transition-transform duration-300">
             <i class="fab fa-whatsapp text-white text-3xl"></i> </a>
     </div>
@@ -99,262 +54,208 @@
     <header id="main-header" class="fixed top-0 w-full z-50 border-b">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <span class="brand-name text-xl font-black text-white uppercase tracking-tighter transition-colors duration-300">Ejemplo Gasista SRL</span>
-            
-            <nav class="hidden md:flex gap-8 font-bold text-white text-sm uppercase tracking-widest transition-colors duration-300"> 
-                <a href="#quienes-somos" class="nav-link hover:text-blue-400 transition">Quiénes Somos</a>
-                <a href="#servicios" class="nav-link hover:text-blue-400 transition">Servicios</a>
+            <nav class="hidden md:flex gap-8 font-bold text-white text-sm uppercase tracking-widest"> 
+                <a href="#quienes-somos" class="nav-link hover:text-blue-400 transition">Quienes somos</a>
+                <a href="#porque-elegirnos" class="nav-link hover:text-blue-400 transition">Por qué elegirnos</a>
+                <a href="#trabajos" class="nav-link hover:text-blue-400 transition">Trabajos</a>
                 <a href="#contacto" class="nav-link hover:text-blue-400 transition">Contacto</a>
             </nav>
-
             <div class="flex items-center gap-6">
-                <div class="flex gap-5 items-center">
-                    <a href="https://facebook.com/tusuario" target="_blank" class="social-icon text-xl hover:scale-110 transition">
-                        <i class="fab fa-facebook"></i> </a>
-                    <a href="https://instagram.com/tusuario" target="_blank" class="social-icon text-xl hover:scale-110 transition">
-                        <i class="fab fa-instagram"></i> </a>
-                    <a href="https://wa.me/54934257291109" target="_blank" class="social-icon text-xl hover:scale-110 transition">
-                        <i class="fab fa-whatsapp"></i> </a>
+                <div class="flex gap-4">
+                    <a href="#" class="social-icon text-xl hover:scale-110 transition"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-icon text-xl hover:scale-110 transition"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/11111111111" class="social-icon text-xl hover:scale-110 transition"><i class="fab fa-whatsapp"></i></a>
                 </div>
-                <a href="tel:+5434257291109" class="bg-blue-900 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-blue-800 transition">Llamar Ahora</a>
+                <a href="tel:+541111111111" class="bg-blue-900 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-blue-800 transition">Llamar Ahora</a>
             </div>
         </div>
     </header>
 
-    <section class="relative h-[65vh] md:h-[75vh] flex items-center justify-center overflow-hidden">
-        <div class="video-container absolute top-0 left-0 w-full h-full"> 
+    <section class="relative h-[75vh] flex items-center justify-center overflow-hidden">
+        <div class="video-container absolute inset-0">
             <video autoplay muted loop playsinline class="min-w-full min-h-full">
-                <source src="Video_de_Llamas_Azules_para_Web.mp4" type="video/mp4"> 
+                <source src="Video_de_Llamas_Azules_para_Web.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-blue-950/60"></div> 
+            <div class="absolute inset-0 bg-blue-950/60"></div>
         </div>
-
+        
         <div class="container mx-auto px-4 relative z-10 text-center text-white"> 
             <div id="slide1" class="slide active-slide">
-                <h2 class="text-4xl md:text-6xl font-black uppercase italic mb-4">Seguridad y Confianza</h2>
-                <p class="text-lg opacity-80 font-medium">Profesionales matriculados a su servicio.</p>
+                <h2 class="text-4xl md:text-7xl font-black uppercase italic mb-4">Seguridad Matriculada</h2>
+                <p class="text-xl opacity-80 font-medium">Confianza técnica en Santo Tomé y zona.</p>
             </div>
             <div id="slide2" class="slide">
-                <h2 class="text-4xl md:text-6xl font-black uppercase italic mb-4">Plomería de Vanguardia</h2>
-                <p class="text-lg opacity-80 font-medium">Tecnología de precisión en cada trabajo.</p>
+                <h2 class="text-4xl md:text-7xl font-black uppercase italic mb-4">Habilitaciones Oficiales</h2>
+                <p class="text-xl opacity-80 font-medium">Gestión completa ante Litoral Gas.</p>
             </div>
             <div id="slide3" class="slide">
-                <h2 class="text-4xl md:text-6xl font-black uppercase italic mb-4">Atención especializada</h2>
-                <p class="text-lg opacity-80 font-medium">Santo Tomé, Santa Fe y alrededores.</p>
+                <h2 class="text-4xl md:text-7xl font-black uppercase italic mb-4">Urgencias 24 Horas</h2>
+                <p class="text-xl opacity-80 font-medium">Estamos cuando más nos necesitás.</p>
             </div>
-            
-            <div class="flex justify-center gap-3 mt-8"> 
-                <button onclick="showSlide(1)" class="w-3 h-3 bg-white/30 rounded-full hover:bg-white"></button>
-                <button onclick="showSlide(2)" class="w-3 h-3 bg-white/30 rounded-full hover:bg-white"></button>
-                <button onclick="showSlide(3)" class="w-3 h-3 bg-white/30 rounded-full hover:bg-white"></button>
-            </div>
+        </div>
+
+        <div class="absolute bottom-8 left-0 w-full animate-float flex justify-center z-20">
+            <a href="#contacto" 
+               class="inline-flex items-center gap-3 bg-yellow-400 hover:bg-yellow-500 text-blue-950 font-black uppercase italic px-8 py-4 md:px-12 md:py-6 rounded-full shadow-[0_15px_40px_rgba(250,204,21,0.5)] transition-all duration-300 transform hover:scale-110 text-lg md:text-2xl tracking-tighter">
+                ¡Solicitá tu Ficha de Obra! 
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
     </section>
 
     <section id="quienes-somos" class="py-24 px-4 container mx-auto">
-        <h3 class="text-4xl md:text-5xl font-black text-blue-950 mb-16 uppercase tracking-tighter italic text-center">Quiénes Somos</h3>
+        <h3 class="text-4xl font-black text-blue-950 mb-16 uppercase italic text-center tracking-tighter w-full">Quienes somos</h3>
         <div class="grid md:grid-cols-2 gap-16 items-center">
-            <div class="rounded-2xl overflow-hidden shadow-lg border-4 border-slate-50">
-                <img src="Gasista1.png" alt="Gasista matriculado trabajando" class="w-full h-full object-cover">
+            <div class="rounded-[40px] overflow-hidden shadow-2xl border-8 border-slate-50">
+                <img src="Gasista1.png" alt="Gasista matriculado" class="w-full h-full object-cover">
             </div>
             <div>
-                <p class="text-xl text-slate-600 mb-6 leading-relaxed">
-                    En <strong>Ejemplo Gasista SRL</strong>, llevamos más de una década ofreciendo soluciones integrales en <strong>gas y plomería</strong> en Santo Tomé.
-                </p>
+                <p class="text-xl text-slate-600 mb-8 leading-relaxed"> En <strong>Ejemplo Gasista SRL</strong>, combinamos experiencia técnica y matriculación oficial para ofrecer soluciones definitivas en gas y plomería en toda la región. </p>
                 <div class="border-l-8 border-blue-600 pl-8 py-4">
-                    <p class="text-2xl font-bold text-blue-900 italic">"Garantizamos el funcionamiento seguro de tu hogar."</p>
+                    <p class="text-2xl font-bold text-blue-900 italic">"Más que arreglos, brindamos tranquilidad para tu familia."</p>
                 </div>
             </div>
         </div>
     </section>
-    <section id="faq" class="py-24 px-4 bg-slate-50">
-        <div class="container mx-auto max-w-4xl">
-            <h3 class="text-4xl md:text-5xl font-black text-blue-950 mb-12 uppercase italic text-center tracking-tighter">Preguntas Frecuentes</h3>
-            
-            <div class="space-y-6">
-                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition">
-                    <h4 class="text-xl font-black text-blue-900 mb-3 uppercase italic">¿Cuánto tiempo demora un trabajo de gas?</h4>
-                    <p class="text-slate-600 leading-relaxed mb-4">
-                        Depende de la magnitud: una reparación menor puede estar lista en un par de horas, mientras que una instalación completa bajo normas de Litoral Gas lleva una planificación detallada. 
-                    </p>
-                    <a href="https://wa.me/54934257291109" class="text-blue-600 font-bold hover:underline">Consultar tiempo estimado por WhatsApp →</a>
-                </div>
 
-                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition">
-                    <h4 class="text-xl font-black text-blue-900 mb-3 uppercase italic">¿Atienden urgencias los fines de semana?</h4>
-                    <p class="text-slate-600 leading-relaxed mb-4">
-                        Sabemos que los problemas de gas no avisan. Contamos con un equipo de guardia técnica para resolver filtraciones o cortes preventivos de seguridad en <strong>Santo Tomé</strong> y zona.
-                    </p>
-                    <a href="https://wa.me/54934257291109" class="text-blue-600 font-bold hover:underline">Solicitar guardia técnica inmediata →</a>
-                </div>
-
-                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition">
-                    <h4 class="text-xl font-black text-blue-900 mb-3 uppercase italic">¿Por qué es vital contratar un gasista matriculado?</h4>
-                    <p class="text-slate-600 leading-relaxed mb-4">
-                        La seguridad es lo primero. Un matriculado garantiza que el trabajo cumple con las normativas vigentes, evitando multas, cortes de suministro y, sobre todo, riesgos de accidentes en el hogar.
-                    </p>
-                    <a href="https://wa.me/54934257291109" class="text-blue-600 font-bold hover:underline">Ver mis credenciales de matrícula →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-<section id="porque-elegirnos" class="py-24 px-4 bg-slate-50">
+    <section id="porque-elegirnos" class="py-24 px-4 bg-slate-50">
         <div class="container mx-auto">
-            <h3 class="text-4xl md:text-5xl font-black text-blue-950 mb-16 uppercase italic text-center tracking-tighter">Por Qué Elegirnos</h3>
-            
+            <h3 class="text-4xl font-black text-blue-950 mb-16 uppercase italic text-center tracking-tighter">Por Qué Elegirnos</h3>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                
-                <div class="flip-card aspect-square cursor-pointer group">
-                    <div class="flip-card-inner relative w-full h-full transition-transform duration-700">
-                        
-                        <div class="flip-card-front absolute inset-0 bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center justify-center text-center">
-                            <i class="fas fa-file-contract text-blue-600 text-6xl mb-6"></i>
-                            <h4 class="text-xl font-black text-blue-900 uppercase italic">Presupuesto sin Cargo</h4>
-                        </div>
-                        
-                        <div class="flip-card-back absolute inset-0 bg-blue-900 text-white p-8 rounded-3xl flex items-center justify-center text-center">
-                            <p class="text-lg leading-relaxed">Visitamos tu domicilio y te brindamos una cotización detallada sin compromiso alguno. ¡Consultá!</p>
-                        </div>
-                        
-                    </div>
-                </div>
-
-                <div class="flip-card aspect-square cursor-pointer group">
-                    <div class="flip-card-inner relative w-full h-full transition-transform duration-700">
-                        
-                        <div class="flip-card-front absolute inset-0 bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center justify-center text-center">
-                            <i class="fas fa-history text-blue-600 text-6xl mb-6"></i>
-                            <h4 class="text-xl font-black text-blue-900 uppercase italic">Atención Rápida</h4>
-                        </div>
-                        
-                        <div class="flip-card-back absolute inset-0 bg-blue-900 text-white p-8 rounded-3xl flex items-center justify-center text-center">
-                            <p class="text-lg leading-relaxed">Priorizamos tus necesidades. Respuestas inmediatas y coordinación eficiente de turnos en Santo Tomé y zona.</p>
-                        </div>
-                        
-                    </div>
-                </div>
-
-                <div class="flip-card aspect-square cursor-pointer group">
-                    <div class="flip-card-inner relative w-full h-full transition-transform duration-700">
-                        
-                        <div class="flip-card-front absolute inset-0 bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center justify-center text-center">
-                            <i class="fas fa-tools text-blue-600 text-6xl mb-6"></i>
-                            <h4 class="text-xl font-black text-blue-900 uppercase italic">Mantenimiento Preventivo</h4>
-                        </div>
-                        
-                        <div class="flip-card-back absolute inset-0 bg-blue-900 text-white p-8 rounded-3xl flex items-center justify-center text-center">
-                            <p class="text-lg leading-relaxed italic font-medium">
-                                Evitá cortes inesperados y fallas costosas. Programamos revisiones periódicas de tus artefactos para garantizar seguridad y eficiencia energética.
-                            </p>
-                        </div>
-                        
-                    </div>
-                </div>
-
-                <div class="flip-card aspect-square cursor-pointer group">
-                    <div class="flip-card-inner relative w-full h-full transition-transform duration-700">
-                        
-                        <div class="flip-card-front absolute inset-0 bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center justify-center text-center">
-                            <i class="fas fa-handshake text-blue-600 text-6xl mb-6"></i>
-                            <h4 class="text-xl font-black text-blue-900 uppercase italic">Trato Personalizado</h4>
-                        </div>
-                        
-                        <div class="flip-card-back absolute inset-0 bg-blue-900 text-white p-8 rounded-3xl flex items-center justify-center text-center">
-                            <p class="text-lg leading-relaxed">Escuchamos tus necesidades y te asesoramos para encontrar la solución más eficiente y segura para tu hogar.</p>
-                        </div>
-                        
-                    </div>
-                </div>
-
+                <div class="flip-card group"><div class="flip-card-inner"><div class="flip-card-front bg-white border shadow-sm"><i class="fas fa-file-invoice-dollar text-blue-600 text-5xl mb-4"></i><h4 class="font-black text-blue-900 uppercase italic">Presupuesto sin Cargo</h4></div><div class="flip-card-back bg-blue-900 text-white p-6">Visitamos tu domicilio para una cotización justa.</div></div></div>
+                <div class="flip-card group"><div class="flip-card-inner"><div class="flip-card-front bg-white border shadow-sm"><i class="fas fa-bolt text-blue-600 text-5xl mb-4"></i><h4 class="font-black text-blue-900 uppercase italic">Atención Rápida</h4></div><div class="flip-card-back bg-blue-900 text-white p-6">Coordinamos visitas eficientes en Santo Tomé y Santa Fe.</div></div></div>
+                <div class="flip-card group"><div class="flip-card-inner"><div class="flip-card-front bg-white border shadow-sm"><i class="fas fa-tools text-blue-600 text-5xl mb-4"></i><h4 class="font-black text-blue-900 uppercase italic">Mantenimiento</h4></div><div class="flip-card-back bg-blue-900 text-white p-6">Revisiones periódicas de artefactos para tu seguridad.</div></div></div>
+                <div class="flip-card group"><div class="flip-card-inner"><div class="flip-card-front bg-white border shadow-sm"><i class="fas fa-id-badge text-blue-600 text-5xl mb-4"></i><h4 class="font-black text-blue-900 uppercase italic">Matriculado</h4></div><div class="flip-card-back bg-blue-900 text-white p-6">Certificación oficial para firmas ante Litoral Gas.</div></div></div>
             </div>
         </div>
     </section>
+
     <section id="trabajos" class="py-24 px-4 bg-white">
         <div class="container mx-auto">
-            <h3 class="text-4xl md:text-5xl font-black text-blue-950 mb-16 uppercase italic text-center tracking-tighter">Nuestros Trabajos</h3>
-            
+            <h3 class="text-4xl font-black text-blue-950 mb-16 uppercase italic text-center tracking-tighter">Nuestros Trabajos</h3>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="group relative overflow-hidden rounded-[40px] shadow-lg aspect-square">
-                    <img src="trabajo1.jpg" alt="Instalación de caldera en Santo Tomé" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-blue-900/80 opacity-0 group-hover:opacity-100 transition flex flex-col justify-center items-center text-white p-6">
-                        <p class="font-black uppercase italic text-xl">Instalación Central</p>
-                        <p class="text-sm opacity-80 mt-2">Habilitación de caldera y radiadores.</p>
-                    </div>
-                </div>
+                <div class="group relative overflow-hidden rounded-[40px] shadow-lg aspect-square bg-slate-100 flex items-center justify-center text-slate-400 font-bold uppercase tracking-widest text-xs italic">Instalaciones</div>
+                <div class="group relative overflow-hidden rounded-[40px] shadow-lg aspect-square bg-slate-100 flex items-center justify-center text-slate-400 font-bold uppercase tracking-widest text-xs italic">Detección de Fugas</div>
+                <div class="group relative overflow-hidden rounded-[40px] shadow-lg aspect-square bg-slate-100 flex items-center justify-center text-slate-400 font-bold uppercase tracking-widest text-xs italic">Habilitaciones</div>
+            </div>
+        </div>
+    </section>
 
-                <div class="group relative overflow-hidden rounded-[40px] shadow-lg aspect-square">
-                    <img src="trabajo2.jpg" alt="Detección de fuga de gas" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-blue-900/80 opacity-0 group-hover:opacity-100 transition flex flex-col justify-center items-center text-white p-6">
-                        <p class="font-black uppercase italic text-xl">Detección Técnica</p>
-                        <p class="text-sm opacity-80 mt-2">Localización y sellado de fuga en red primaria.</p>
-                    </div>
+    <section id="faq" class="py-24 px-4 bg-slate-50">
+        <div class="container mx-auto max-w-4xl">
+            <h3 class="text-4xl font-black text-blue-950 mb-12 uppercase italic text-center tracking-tighter">Preguntas Frecuentes</h3>
+            <div class="space-y-6">
+                <div class="bg-white p-8 rounded-3xl border shadow-sm">
+                    <h4 class="text-xl font-black text-blue-900 mb-3 uppercase italic">¿Cuánto tiempo demora un trabajo de gas?</h4>
+                    <p class="text-slate-600 leading-relaxed">Depende de la magnitud: una reparación menor puede estar lista en un par de horas, mientras que una instalación completa bajo normas de Litoral Gas lleva una planificación detallada.</p>
                 </div>
-
-                <div class="group relative overflow-hidden rounded-[40px] shadow-lg aspect-square">
-                    <img src="trabajo3.jpg" alt="Habilitación Litoral Gas" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-blue-900/80 opacity-0 group-hover:opacity-100 transition flex flex-col justify-center items-center text-white p-6">
-                        <p class="font-black uppercase italic text-xl">Planos y Trámites</p>
-                        <p class="text-sm opacity-80 mt-2">Gestión completa ante Litoral Gas.</p>
-                    </div>
+                <div class="bg-white p-8 rounded-3xl border shadow-sm">
+                    <h4 class="text-xl font-black text-blue-900 mb-3 uppercase italic">¿Atienden urgencias los fines de semana?</h4>
+                    <p class="text-slate-600 leading-relaxed">Contamos con un equipo de guardia técnica para resolver filtraciones o cortes preventivos de seguridad en Santo Tomé y zona, las 24 horas del día.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border shadow-sm">
+                    <h4 class="text-xl font-black text-blue-900 mb-3 uppercase italic">¿Por qué es vital contratar un gasista matriculado?</h4>
+                    <p class="text-slate-600 leading-relaxed">La seguridad es lo primero. Solo un matriculado avalado garantiza que el trabajo cumple con las normativas vigentes, evitando multas, cortes de suministro y accidentes graves.</p>
                 </div>
             </div>
         </div>
     </section>
-    <section id="contacto" class="py-24 px-4 bg-slate-50">
+
+    <section id="contacto" class="py-24 px-4 bg-white">
         <div class="container mx-auto">
-            <h3 class="text-5xl md:text-7xl font-black text-blue-950 mb-16 uppercase italic text-center">Contacto</h3>
+            <h3 class="text-5xl font-black text-blue-950 mb-16 uppercase italic text-center tracking-tighter">Contacto</h3>
             <div class="grid lg:grid-cols-2 gap-16">
                 
-                <form class="space-y-8 bg-white p-8 md:p-12 rounded-[40px] border shadow-sm"> 
-                    <input type="text" placeholder="Nombre" class="w-full py-4 bg-transparent border-b-2 outline-none focus:border-blue-600 transition font-medium">
-                    <input type="email" placeholder="Correo electrónico" class="w-full py-4 bg-transparent border-b-2 outline-none focus:border-blue-600 transition font-medium">
-                    <textarea placeholder="¿De qué se trata su consulta?" rows="4" class="w-full py-4 bg-transparent border-b-2 outline-none focus:border-blue-600 transition font-medium resize-none"></textarea>
-                    <button class="bg-blue-700 text-white px-12 py-5 rounded-2xl font-black uppercase shadow-lg hover:bg-blue-800 transition">Enviar mensaje</button>
-                </form>
-                
-                <div class="space-y-12"> 
-                    <div class="space-y-6 text-xl">
-                        <p class="flex items-center gap-4">
-                            <i class="fab fa-whatsapp text-blue-600 text-3xl"></i> 
-                            <strong>WhatsApp:</strong> 11111111
-                        </p>
-                        <p class="flex items-center gap-4">
-                            <i class="fas fa-location-dot text-blue-600 text-3xl"></i> 
-                            <strong>Dirección:</strong> Avenida Siempre Viva 1111, Santo Tomé.
-                        </p>
+                <form id="obra-form" class="space-y-6 bg-slate-50 p-8 md:p-12 rounded-[50px] border shadow-sm"> 
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <input type="text" id="nombre" placeholder="Nombre completo" required class="w-full py-4 border-b-2 outline-none font-medium focus:border-blue-600 bg-transparent">
+                        <input type="text" id="ubi_obra" placeholder="Dirección (Calle y Nro)" required class="w-full py-4 border-b-2 outline-none font-medium focus:border-blue-600 bg-transparent">
                     </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <select id="servicio" class="w-full py-4 border-b-2 outline-none font-medium text-slate-500 bg-transparent">
+                            <option value="" disabled selected>Servicio</option>
+                            <option value="Urgencia Técnica">🚨 Urgencia</option>
+                            <option value="Habilitación">📝 Planos / Firma</option>
+                            <option value="Instalación">🛠️ Instalación</option>
+                        </select>
+                        <select id="ciudad" class="w-full py-4 border-b-2 outline-none font-medium text-slate-500 bg-transparent">
+                            <option value="" disabled selected>Ciudad</option>
+                            <option value="Santa Fe">Santa Fe</option>
+                            <option value="Santo Tomé">Santo Tomé</option>
+                            <option value="Sauce Viejo">Sauce Viejo</option>
+                        </select>
+                    </div>
+                    <textarea id="desc" placeholder="Descripción del problema..." rows="3" required class="w-full py-4 border-b-2 outline-none font-medium resize-none bg-transparent"></textarea>
+                    <button type="button" onclick="enviarFichaTecnica()" class="w-full bg-blue-700 text-white py-5 rounded-2xl font-black uppercase shadow-lg hover:bg-blue-800 transition flex items-center justify-center gap-3">
+                        Generar Ficha de Obra <i class="fab fa-whatsapp text-xl"></i>
+                    </button>
+                </form>
 
-                    <div class="h-72 bg-slate-200 rounded-[40px] overflow-hidden shadow-inner"> 
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m13!1m1!1s0x9445100000000001:0x7000000000000000!2sSanto+Tom%C3%A9%2C+Santa+Fe!5e0!3m2!1ses!2sar!4v1700000000000!5m2!1ses!2sar" 
-                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-                        </iframe>
+                <div class="space-y-8">
+                    <div class="bg-blue-900 text-white p-10 rounded-[50px] shadow-xl relative overflow-hidden">
+                        <i class="fas fa-clock absolute -right-4 -bottom-4 text-white/10 text-9xl"></i>
+                        <h4 class="text-2xl font-black uppercase italic mb-6 border-b border-white/20 pb-4 text-center tracking-widest">Horarios</h4>
+                        <div class="space-y-3 text-lg">
+                            <p class="flex justify-between"><span>Lun a Vie</span> <strong>08:00 - 20:00</strong></p>
+                            <p class="flex justify-between"><span>Sábados</span> <strong>10:00 - 17:00</strong></p>
+                            <p class="text-sm font-black text-red-400 mt-6 uppercase text-center">🚨 Guardia 24hs Emergencias </p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <a href="https://wa.me/54934257291109" class="flex items-center gap-6 p-6 bg-slate-50 rounded-3xl border hover:shadow-md transition">
+                            <i class="fab fa-whatsapp text-green-500 text-4xl"></i>
+                            <div><p class="text-xs font-black text-slate-400 uppercase">WhatsApp</p><p class="text-xl font-bold">342 57291109</p></div>
+                        </a>
+                        <div class="flex items-center gap-6 p-6 bg-slate-50 rounded-3xl border">
+                            <i class="fas fa-envelope text-blue-600 text-4xl"></i>
+                            <div><p class="text-xs font-black text-slate-400 uppercase">Email</p><p class="text-xl font-bold italic">contacto@ejemplogasista.com</p></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <footer class="bg-slate-950 text-white py-12 text-center">
+        <p class="font-black uppercase text-2xl italic">Ejemplo Gasista SRL</p>
+        <p class="text-slate-500 text-sm">© 2026 - Santo Tomé, Santa Fe y Sauce Viejo.</p>
+    </footer>
+
     <script> 
-        /* LÓGICA DEL HEADER ADAPTATIVO */
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('main-header');
-            if (window.scrollY > 50) { 
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+        /* HEADER SCROLL */
+        window.addEventListener('scroll', () => {
+            const h = document.getElementById('main-header');
+            window.scrollY > 50 ? h.classList.add('scrolled') : h.classList.remove('scrolled');
         });
 
-        /* Lógica de slider automático */
-        let slideIndex = 1;
+        /* SLIDER LOGIC */
+        let slideIdx = 1;
         function showSlide(n) {
-            let slides = document.querySelectorAll(".slide");
-            slides.forEach(s => s.classList.remove("active-slide"));
-            if(slides[n-1]) slides[n-1].classList.add("active-slide");
+            document.querySelectorAll(".slide").forEach(s => s.classList.remove("active-slide"));
+            const s = document.getElementById('slide' + n); if(s) s.classList.add("active-slide");
         }
-        setInterval(() => { 
-            slideIndex = slideIndex % 3 + 1;
-            showSlide(slideIndex);
-        }, 5000);
+        setInterval(() => { slideIdx = slideIdx % 3 + 1; showSlide(slideIdx); }, 5000);
+
+        /* WHATSAPP AUTOMATION */
+        function enviarFichaTecnica() {
+            const tel = "54934257291109";
+            const nom = document.getElementById('nombre').value;
+            const dir = document.getElementById('ubi_obra').value;
+            const ciudad = document.getElementById('ciudad').value;
+            const ser = document.getElementById('servicio').value;
+            const des = document.getElementById('desc').value;
+
+            if(!nom || !dir || !ciudad || !des) { alert("🚨 Completá los datos para generar la ficha."); return; }
+
+            const msj = `*📋 FICHA DE SOLICITUD DE OBRA*%0A` +
+                        `👤 *CLIENTE:* ${nom}%0A` +
+                        `📍 *UBICACIÓN:* ${dir}, ${ciudad}%0A` +
+                        `🛠️ *SERVICIO:* ${ser}%0A` +
+                        `📝 *DETALLE:* ${des}%0A` +
+                        `_Enviado desde el Módulo de Gestión Web_`;
+
+            window.open(`https://wa.me/${tel}?text=${msj}`, '_blank');
+        }
     </script>
 </body>
 </html>
